@@ -25,6 +25,7 @@ class SocialNetworkApp {
 	int MaxUsers;
 	int MaxPages;
 	int MaxPosts;
+	int MaxComments;
 public:
 	// Constructor
 	SocialNetworkApp();
@@ -33,7 +34,10 @@ public:
 	void Read_UserData_FromFile();
 	void Read_PageData_FromFile();
 	void Read_PostData_FromFile();
+	void Read_CommentData_FromFile();
 	User* FindUserByID(const string&, User**, int);
+	void View_Post_By_ID(const string&);
+	void View_Likes_By_ID();
 	void Run();
 
 	// Destructor

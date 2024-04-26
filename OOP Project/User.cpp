@@ -30,6 +30,16 @@ string* User::getfriendIDs()
     return friendIDs;
 }
 
+string User::getFirstName()
+{
+    return First_Name;
+}
+
+string User::getLastName()
+{
+    return Last_Name;
+}
+
 //Functions
 void User::Display_FriendList(User** All_Users, int MaxUsers)
 {
@@ -40,6 +50,7 @@ void User::Display_FriendList(User** All_Users, int MaxUsers)
         {
             if (All_Users[j]->UserID == friendIDs[i])
             {
+                cout << "\nFriend # " << i + 1 << endl;
                 All_Users[j]->Display();
             }
         }
@@ -60,5 +71,5 @@ void User::SetTimeline(Post** AllPosts, const int& MaxPosts)
 void User::Display()
 {
     cout << "User ID: " << UserID << endl;
-    cout << "User Name: " << First_Name << " " << Last_Name << endl;
+    cout << "User Name:  " << First_Name << " " << Last_Name << endl;
  }

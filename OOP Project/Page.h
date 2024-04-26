@@ -26,6 +26,10 @@ public:
 	Page();
 	Page(string, string);
 
+	// Getters
+	string getPageID();
+	string getTitle();
+
 	//Functions
 	void SetTimeline(Post**,const int&);
 

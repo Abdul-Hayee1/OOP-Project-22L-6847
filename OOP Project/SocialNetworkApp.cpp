@@ -9,27 +9,10 @@ SocialNetworkApp::SocialNetworkApp()
     MaxUsers = 0;
     MaxPages = 0;
     MaxPosts = 0;
+    MaxComments = 0;
 }
 
-//SocialNetworkApp::SocialNetworkApp(int _maxUsers, int _maxPages): MaxUsers(_maxUsers), MaxPages(_maxPages), UserCount(0), PageCount(0) 
-//{
-//    users = new User * [MaxUsers];
-//    pages = new Post * *[MaxPages];
-//}
-
-
-// Functions
-User* SocialNetworkApp::FindUserByID(const string& userId, User** All_Users, int MaxUsers)
-{
-    for (int i = 0; i < MaxUsers; i++)
-    {
-        if (All_Users[i]->getUserID() == userId)
-        {
-            return All_Users[i];
-        }
-    }
-    return nullptr;
-}
+// Reading Data Functions
 
 void SocialNetworkApp::Read_UserData_FromFile()
 {
@@ -98,8 +81,8 @@ void SocialNetworkApp::Read_PostData_FromFile()
     {
         int num;
         PostFile >> num;
-        string line;
-        PostFile >> line;
+        string postID;
+        PostFile >> postID;
         PostFile.ignore();
 
         int day, month, year;
@@ -133,7 +116,7 @@ void SocialNetworkApp::Read_PostData_FromFile()
             }
             PostFile.ignore();
 
-            posts[i] = new Post(temp, description, TempAct, ownerId, IDsWhoLiked, noOflikes);
+            posts[i] = new Post(postID, temp, description, TempAct, ownerId, IDsWhoLiked, noOflikes);
         }
         else if (num == 1)
         {
@@ -150,10 +133,103 @@ void SocialNetworkApp::Read_PostData_FromFile()
             }
             PostFile.ignore();
 
-            posts[i] = new Post(temp, description, ownerId, IDsWhoLiked, noOflikes);
+            posts[i] = new Post(postID, temp, description, ownerId, IDsWhoLiked, noOflikes);
         }
 
     }
+}
+
+void SocialNetworkApp::Read_CommentData_FromFile()
+{
+    ifstream CommentFile("Comments.txt");
+
+    CommentFile >> MaxComments;
+
+    for (int i = 0; i < MaxComments; i++)
+    {
+        string word;
+        CommentFile >> word;
+
+        string postID;
+        CommentFile >> postID;
+
+        string CommentorID;
+        CommentFile >> CommentorID;
+
+        string description;
+        getline(CommentFile, description);
+
+        int postIndex;
+        for (int i = 0; i < MaxPosts; i++)
+        {
+            if (posts[i]->getPostID() == postID)
+            {
+                postIndex = i;
+                break;
+            }
+        }
+
+        bool found = false;
+        for (int i = 0; i < MaxUsers; i++)
+        {
+            if (users[i]->getUserID() == CommentorID)
+            {
+                posts[postIndex]->AddComment(description, users[i]);
+                found = true; 
+                break;
+            }
+        }
+        if (found == false)
+        {
+            for (int i = 0; i < MaxPages; i++)
+            {
+                if (pages[i]->getPageID() == CommentorID)
+                {
+                    posts[postIndex]->AddComment(description, pages[i]);
+                    break;
+                }
+            }
+        }
+
+        CommentFile.ignore();
+    }
+}
+
+// Main Functions
+User* SocialNetworkApp::FindUserByID(const string& userId, User** All_Users, int MaxUsers)
+{
+    for (int i = 0; i < MaxUsers; i++)
+    {
+        if (All_Users[i]->getUserID() == userId)
+        {
+            return All_Users[i];
+        }
+    }
+    return nullptr;
+}
+
+void SocialNetworkApp::View_Post_By_ID(const string& postID)
+{
+    bool found = false;
+    for (int i = 0; i < MaxPosts; i++)
+    {
+        if (posts[i]->getPostID() == postID)
+        {
+            posts[i]->Display_Post();
+            found = true;
+            break;
+        }
+    }
+
+    if (found == false)
+    {
+        cout << "Post not Found." << endl;
+    }
+}
+
+void SocialNetworkApp::View_Likes_By_ID()
+{
+
 }
 
 
@@ -163,6 +239,7 @@ void SocialNetworkApp::Run()
     Read_UserData_FromFile();
     Read_PageData_FromFile();
     Read_PostData_FromFile();
+    Read_CommentData_FromFile();
 
     for (int i = 0; i < MaxUsers; i++)
     {
@@ -188,6 +265,21 @@ void SocialNetworkApp::Run()
     }
 
     /*users[1]->Display_FriendList(users, MaxUsers);*/
+
+    //User Interface
+    cout << "1- Set Current User" << endl;
+    cout << "2- View Home of Current User" << endl;
+    cout << "3- Like a Post" << endl;
+    cout << "4- View the list of People who liked a Post" << endl;
+    cout << "5- Comment on a Post" << endl;
+    cout << "6- View a Post" << endl;
+    cout << "7- Share a Memory" << endl;
+    cout << "8- View User's Timeline" << endl;
+    cout << "9- View Friend List" << endl;
+    cout << "10- View Page" << endl;
+
+
+
 }
 
 // Destructor

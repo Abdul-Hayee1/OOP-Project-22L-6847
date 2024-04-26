@@ -29,6 +29,8 @@ public:
 	//Getters
 	string getUserID();
 	string* getfriendIDs();
+	string getFirstName();
+	string getLastName();
 
 	//Functions
 	void Display_FriendList(User**, int);

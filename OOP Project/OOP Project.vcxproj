@@ -131,6 +131,7 @@
     <ClCompile Include="Comments.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Memory.cpp" />
     <ClCompile Include="Page.cpp" />
     <ClCompile Include="Post.cpp" />
     <ClCompile Include="SocialNetworkApp.cpp" />
@@ -140,6 +141,7 @@
     <ClInclude Include="Activity.h" />
     <ClInclude Include="Comments.h" />
     <ClInclude Include="Date.h" />
+    <ClInclude Include="Memory.h" />
     <ClInclude Include="Page.h" />
     <ClInclude Include="Post.h" />
     <ClInclude Include="SocialNetworkApp.h" />

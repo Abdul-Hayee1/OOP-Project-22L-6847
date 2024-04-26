@@ -15,7 +15,18 @@ Page::Page(string id, string title) :PageID(id), Title(title)
     PostCount = 0;
 }
 
+// Getters
+string Page::getPageID()
+{
+    return PageID;
+}
 
+string Page::getTitle()
+{
+    return Title;
+}
+
+// Functions
 void Page::SetTimeline(Post** AllPosts, const int& MaxPosts)
 {
     for (int i = 0; i < MaxPosts; i++)
