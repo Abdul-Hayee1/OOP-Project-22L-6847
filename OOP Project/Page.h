@@ -21,6 +21,7 @@ class Page {
 	Post** timeline;
 	int LikesOnPage;
 	int PostCount;
+	const int MAX_POST_LIMIT = 50;
 public:
 	// Constructors
 	Page();

@@ -13,6 +13,12 @@ public:
 	/*Memory();*/
 	Memory(Post*, string, Date*,string,string*,int, Activity*,string,Comment**, int);
 
+	// Functions
+	void ViewMemory()
+	{
+
+	}
+
 	~Memory();
 };
 

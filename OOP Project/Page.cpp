@@ -10,7 +10,7 @@ Page::Page()
 
 Page::Page(string id, string title) :PageID(id), Title(title)
 {
-	timeline = nullptr;
+    timeline = new Post * [MAX_POST_LIMIT];
 	LikesOnPage = 0;
     PostCount = 0;
 }

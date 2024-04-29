@@ -38,6 +38,8 @@ public:
 	// Getters
 	string getOwnerID();
 	string getPostID();
+	int getNo_Of_Likes();
+	string getLikedByID(int index);
 
 	// Functions
 	void AddComment(string,User*);

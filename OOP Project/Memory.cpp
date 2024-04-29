@@ -6,4 +6,4 @@ Memory::Memory(Post* origPostPtr, string PostID, Date* PublishedDate, string Des
 Memory::~Memory()
 {
 
-}
+}   

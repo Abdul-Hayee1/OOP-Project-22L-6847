@@ -36,6 +36,17 @@ string Post::getPostID()
 	return PostID;
 }
 
+int Post::getNo_Of_Likes()
+{
+	return no_of_likes;
+}
+
+string Post::getLikedByID(int index)
+{
+	return UsersWhoLiked[index];
+}
+
+
 // Functions
 void Post::AddComment(string description,User* user)
 {

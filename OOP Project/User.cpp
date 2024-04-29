@@ -15,7 +15,7 @@ User::User()
 
 User::User(string userid, string fn, string ln, string* friendIds, int fdcount, string* likedpgids, int likedPgCount) : UserID(userid), First_Name(fn), Last_Name(ln), friendIDs(friendIds), friendCount(fdcount), liked_PageIDs(likedpgids), likedPgsCount(likedPgCount)
 {
-    timeline = nullptr;
+    timeline = new Post * [MAX_POST_LIMIT];
     PostCount = 0;
 }
 
@@ -51,7 +51,7 @@ void User::Display_FriendList(User** All_Users, int MaxUsers)
             if (All_Users[j]->UserID == friendIDs[i])
             {
                 cout << "\nFriend # " << i + 1 << endl;
-                All_Users[j]->Display();
+                /*All_Users[j]->Display(window);*/
             }
         }
     }
@@ -68,8 +68,20 @@ void User::SetTimeline(Post** AllPosts, const int& MaxPosts)
     }
 }
 
-void User::Display()
+void User::Display(sf::RenderWindow& window, const sf::Vector2f& position)
 {
-    cout << "User ID: " << UserID << endl;
-    cout << "User Name:  " << First_Name << " " << Last_Name << endl;
+    font.loadFromFile("images/Arial.ttf");
+    text.setFont(font);
+    text.setCharacterSize(22);
+    text.setFillColor(sf::Color::White);
+
+    stringstream ss;
+    ss << "User ID: " << UserID << " " << "     Name: " << First_Name << " " << Last_Name;
+    string userInfo = ss.str();
+
+    text.setString(userInfo);
+
+    text.setPosition(position);
+
+    window.draw(text);
  }

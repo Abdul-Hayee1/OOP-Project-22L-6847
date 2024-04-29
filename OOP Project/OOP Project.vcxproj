@@ -104,10 +104,17 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>D:\BS(CS)\SFML-2.6.1\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>D:\BS(CS)\SFML-2.6.1\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics-d.lib;
+sfml-window-d.lib;
+sfml-audio-d.lib;
+sfml-network-d.lib;
+sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -141,6 +148,7 @@
     <ClInclude Include="Activity.h" />
     <ClInclude Include="Comments.h" />
     <ClInclude Include="Date.h" />
+    <ClInclude Include="Globals.h" />
     <ClInclude Include="Memory.h" />
     <ClInclude Include="Page.h" />
     <ClInclude Include="Post.h" />
