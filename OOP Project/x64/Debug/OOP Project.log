@@ -1,13 +1,8 @@
-﻿  SocialNetworkApp.cpp
-D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(246,13): warning C4553: '==': result of expression not used; did you intend '='?
-D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(415,102): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(415,102): warning C4244:         with
-D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(415,102): warning C4244:         [
-D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(415,102): warning C4244:             T=float
-D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(415,102): warning C4244:         ]
-D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(415,81): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(415,81): warning C4244:         with
-D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(415,81): warning C4244:         [
-D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(415,81): warning C4244:             T=float
-D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(415,81): warning C4244:         ]
+﻿  Post.cpp
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\Activity.h(7,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Post.cpp')
+  
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\Post.h(12,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Post.cpp')
+  
   OOP Project.vcxproj -> D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\x64\Debug\OOP Project.exe

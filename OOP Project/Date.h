@@ -3,6 +3,8 @@
 
 #include<iostream>
 #include<string>
+#include<SFML/Graphics.hpp>
+#include "Globals.h"
 
 using namespace std;
 

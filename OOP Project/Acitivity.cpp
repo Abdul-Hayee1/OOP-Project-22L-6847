@@ -18,26 +18,41 @@ Activity::Activity(const Activity& obj)
 
 
 // Functions
-void Activity::PrintActivity()
+void Activity::PrintActivity(sf::RenderWindow& window, float xOffset)
 {
+	sf::Font font;
+	font.loadFromFile("images/Segoe UI Historic.ttf");
+	sf::Text text;
+	text.setCharacterSize(20);
+	text.setFont(font);
+	text.setFillColor(sf::Color(101, 103, 107));
+
+	stringstream input;
+
 	if (Type == 1)
 	{
-		cout << "is feeling ";
+		input << "is feeling";
 	}
 	else if (Type == 2)
 	{
-		cout << "is thinking about ";
+		input << "is thinking about";
 	}
 	else if (Type == 3)
 	{
-		cout << "is Making ";
+		input << "is making";
 	}
 	else if (Type == 4)
 	{
-		cout << "is celebrating ";
+		input << "is celebrating";
 	}
 
-	cout << Value << "." << endl;
+	input << Value << ".";
+
+	text.setString(input.str());
+	text.setPosition(xOffset, 123.f);
+
+	window.draw(text);
+
 }
 
 // Destructor

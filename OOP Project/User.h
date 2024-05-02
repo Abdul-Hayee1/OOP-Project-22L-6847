@@ -29,7 +29,7 @@ class User {
 	const int MAX_POST_LIMIT = 50;
 	/*sf::Text idText, FName_Text, LName_Text;*/
 	sf::Font font;
-	sf::Text text;
+	sf::Text text, defaultText;
 public:
 	User();
 	User(string, string, string, string*, int, string*, int);
@@ -41,7 +41,8 @@ public:
 	string getLastName();
 
 	//Functions
-	void Display_FriendList(User**, int);
+	void Display_FriendList(sf::RenderWindow&, User**, int);
+	void Display_Friend(sf::RenderWindow&, User**, int, int, sf::Vector2f);
 	void SetTimeline(Post**,const int&);
 	void Display(sf::RenderWindow&, const sf::Vector2f&);
 

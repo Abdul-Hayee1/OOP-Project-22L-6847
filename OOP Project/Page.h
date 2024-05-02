@@ -6,6 +6,8 @@
 #include "Date.h"
 #include "Activity.h"
 #include<string>
+#include<SFML/Graphics.hpp>
+#include "Globals.h"
 
 using namespace std;
 

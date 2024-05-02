@@ -3,6 +3,9 @@
 
 #include<iostream>
 #include<string>
+#include<SFML/Graphics.hpp>
+#include "Globals.h";
+#include<sstream>
 
 using namespace std;
 
@@ -15,7 +18,7 @@ public:
 	Activity(const Activity&);
 
 	// Functions
-	void PrintActivity();
+	void PrintActivity(sf::RenderWindow&, float Offset);
 
 	~Activity();
 };

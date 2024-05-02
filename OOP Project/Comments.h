@@ -3,6 +3,8 @@
 
 #include "User.h"
 #include "Page.h"
+#include<SFML/Graphics.hpp>
+#include "Globals.h"
 
 using namespace std;
 
@@ -13,12 +15,13 @@ class Comment {
 	string description;
 	User* Commented_By_User;
 	Page* Commented_By_Page;
+	sf::Font font;
 public:
 	Comment(string,User*);
 	Comment(string, Page*);
 
 	// Functions
-	void Display_Comment();
+	void Display_Comment(sf::RenderWindow&);
 };
 
 #endif

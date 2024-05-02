@@ -8,6 +8,8 @@
 #include "Comments.h"
 #include<iostream>
 #include<string>
+#include<SFML/Graphics.hpp>
+#include "Globals.h";
 
 using namespace std;
 
@@ -25,10 +27,13 @@ class Post {
 	Date *PublishedDate;
 	Activity *activity;
 	string OwnerID;
+	User *UOwner;
+	Page *POwner;
 	Comment** comments;
 	int CommentCount;
 	const int MAX_COMMENT_LIMIT = 10;
 	const int MAX_LIKE_LIMIT = 10;
+	sf::Font font;
 public:
 	// Constructor
 	Post();
@@ -44,7 +49,8 @@ public:
 	// Functions
 	void AddComment(string,User*);
 	void AddComment(string, Page*);
-	void Display_Post();
+	void AssigningOwner(User**, Page**, const int, const int);
+	void Display_Post(sf::RenderWindow&);
 
 	// Destructor
 	~Post();
