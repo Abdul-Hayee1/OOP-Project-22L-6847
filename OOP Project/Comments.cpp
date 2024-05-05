@@ -20,7 +20,7 @@ void Comment::Display_Comment(sf::RenderWindow& window)
 	commentor_text.setFont(font);
 	commentor_text.setFillColor(sf::Color::Black);
 	commentor_text.setCharacterSize(26);
-	commentor_text.setPosition(0.f, 0.f);
+	commentor_text.setPosition(300.f, 400.f);
 
     comment_desc.setFont(font);
     comment_desc.setFillColor(sf::Color::Black);
@@ -58,6 +58,7 @@ void Comment::Display_Comment(sf::RenderWindow& window)
                 sf::FloatRect textRect = tempText.getLocalBounds();
                 if (textRect.width + tempText.getCharacterSize() * word.size() > maxWidth)
                 {
+                    y += lineHeight;
                     // Draw the current line
                     tempText.setString(line);
                     tempText.setPosition(x, y); // Update position
@@ -66,7 +67,7 @@ void Comment::Display_Comment(sf::RenderWindow& window)
                     // Move to the next line
                     line = word + " ";
                     tempText.setString(line);
-                    y += lineHeight;
+                    y += 20;
                 }
                 else
                 {

@@ -24,6 +24,10 @@ class Page {
 	int LikesOnPage;
 	int PostCount;
 	const int MAX_POST_LIMIT = 50;
+	// For SFML
+	int CurrentPostIndex;
+	sf::Font font;
+	sf::Text post_num_text;
 public:
 	// Constructors
 	Page();
@@ -32,9 +36,11 @@ public:
 	// Getters
 	string getPageID();
 	string getTitle();
+	int getPost_Count();
 
 	//Functions
 	void SetTimeline(Post**,const int&);
+	void DisplayTimeline(sf::RenderWindow&, const sf::Event&, bool);
 
 	// Destructor
 };

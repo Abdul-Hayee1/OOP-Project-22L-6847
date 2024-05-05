@@ -4,7 +4,7 @@
 #include<iostream>
 #include<string>
 #include<SFML/Graphics.hpp>
-#include "Globals.h";
+#include "Globals.h"
 #include<sstream>
 
 using namespace std;

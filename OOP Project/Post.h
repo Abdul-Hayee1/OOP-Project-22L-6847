@@ -9,7 +9,7 @@
 #include<iostream>
 #include<string>
 #include<SFML/Graphics.hpp>
-#include "Globals.h";
+#include "Globals.h"
 
 using namespace std;
 
@@ -50,7 +50,7 @@ public:
 	void AddComment(string,User*);
 	void AddComment(string, Page*);
 	void AssigningOwner(User**, Page**, const int, const int);
-	void Display_Post(sf::RenderWindow&);
+	void Display_Post(sf::RenderWindow&, bool);
 
 	// Destructor
 	~Post();

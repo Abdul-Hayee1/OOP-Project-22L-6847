@@ -1,8 +1,175 @@
 ﻿  Post.cpp
-D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\Activity.h(7,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  (compiling source file 'Post.cpp')
-  
-D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\Post.h(12,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  (compiling source file 'Post.cpp')
-  
+  SocialNetworkApp.cpp
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(550,34): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(601,103): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(601,103): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(601,103): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(601,103): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(601,103): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(601,82): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(601,82): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(601,82): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(601,82): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(601,82): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(648,111): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(648,111): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(648,111): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(648,111): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(648,111): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(648,90): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(648,90): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(648,90): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(648,90): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(648,90): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(682,111): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(682,111): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(682,111): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(682,111): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(682,111): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(682,90): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(682,90): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(682,90): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(682,90): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(682,90): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(698,111): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(698,111): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(698,111): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(698,111): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(698,111): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(698,90): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(698,90): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(698,90): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(698,90): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(698,90): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(735,111): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(735,111): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(735,111): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(735,111): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(735,111): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(735,90): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(735,90): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(735,90): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(735,90): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(735,90): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(785,112): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(785,112): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(785,112): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(785,112): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(785,112): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(785,91): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(785,91): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(785,91): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(785,91): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(785,91): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(802,89): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(802,89): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(802,89): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(802,89): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(802,89): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(802,68): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(802,68): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(802,68): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(802,68): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(802,68): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(815,112): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(815,112): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(815,112): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(815,112): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(815,112): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(815,91): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(815,91): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(815,91): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(815,91): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(815,91): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(830,111): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(830,111): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(830,111): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(830,111): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(830,111): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(830,90): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(830,90): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(830,90): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(830,90): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(830,90): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(875,88): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(875,88): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(875,88): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(875,88): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(875,88): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(875,67): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(875,67): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(875,67): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(875,67): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(875,67): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(886,111): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(886,111): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(886,111): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(886,111): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(886,111): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(886,90): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(886,90): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(886,90): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(886,90): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(886,90): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(901,111): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(901,111): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(901,111): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(901,111): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(901,111): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(901,90): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(901,90): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(901,90): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(901,90): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(901,90): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(916,110): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(916,110): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(916,110): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(916,110): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(916,110): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(916,89): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(916,89): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(916,89): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(916,89): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(916,89): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(932,111): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(932,111): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(932,111): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(932,111): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(932,111): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(932,90): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(932,90): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(932,90): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(932,90): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(932,90): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(971,112): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(971,112): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(971,112): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(971,112): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(971,112): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(971,91): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(971,91): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(971,91): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(971,91): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(971,91): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(989,89): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(989,89): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(989,89): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(989,89): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(989,89): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(989,68): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(989,68): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(989,68): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(989,68): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(989,68): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(1003,112): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(1003,112): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(1003,112): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(1003,112): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(1003,112): warning C4244:         ]
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(1003,91): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(1003,91): warning C4244:         with
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(1003,91): warning C4244:         [
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(1003,91): warning C4244:             T=float
+D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\OOP Project\SocialNetworkApp.cpp(1003,91): warning C4244:         ]
+  Generating Code...
   OOP Project.vcxproj -> D:\BS(CS)\Semester 3\OOP\OOP-Project-22L-6847\x64\Debug\OOP Project.exe

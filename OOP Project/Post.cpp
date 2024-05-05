@@ -106,9 +106,9 @@ void Post::AssigningOwner(User** users,Page** pages, const int MaxUsers,const in
     }
 }
 
-void Post::Display_Post(sf::RenderWindow& window)
+void Post::Display_Post(sf::RenderWindow& window, bool ShowCommentSection)
 {
-    sf::Text Post_desc, Owner_desc;
+    sf::Text Post_desc, Owner_desc, commnt_count;
     font.loadFromFile("images/Segoe UI Historic.ttf");
     Post_desc.setFont(font);
     Post_desc.setFillColor(sf::Color::Black);
@@ -119,83 +119,95 @@ void Post::Display_Post(sf::RenderWindow& window)
     Owner_desc.setFillColor(sf::Color(5, 5, 5));
     Owner_desc.setCharacterSize(21);
     Owner_desc.setPosition(300.f, 122.f);
+    commnt_count.setString(to_string(CommentCount));
+    commnt_count.setCharacterSize(20);
+    commnt_count.setPosition(836.f, 598.f);
+    commnt_count.setFillColor(sf::Color(101, 103, 107));
+    commnt_count.setFont(font);
 
     float maxWidth = 610.f;
     float lineHeight = 44;
 
     sf::Text tempText(Post_desc);
 
-    // Function for word wrapping
-    auto wrapText = [&](const string& str)
-        {
-            stringstream ss(str);
-            string word;
-            string line;
-            float x = Post_desc.getPosition().x;
-            float y = Post_desc.getPosition().y;
-
-            while (ss >> word)
+    if (ShowCommentSection == false)
+    {
+        // Function for word wrapping
+        auto wrapText = [&](const string& str)
             {
-                sf::FloatRect textRect = tempText.getLocalBounds();
-                if (textRect.width + tempText.getCharacterSize() * word.size() > maxWidth)
+                stringstream ss(str);
+                string word;
+                string line;
+                float x = Post_desc.getPosition().x;
+                float y = Post_desc.getPosition().y;
+
+                while (ss >> word)
                 {
-                    tempText.setString(line);
-                    tempText.setPosition(x, y);
-                    window.draw(tempText);
+                    sf::FloatRect textRect = tempText.getLocalBounds();
+                    if (textRect.width + tempText.getCharacterSize() * word.size() > maxWidth)
+                    {
+                        tempText.setString(line);
+                        tempText.setPosition(x, y);
+                        window.draw(tempText);
 
-                    // Move to the next line
-                    line = word + " ";
-                    tempText.setString(line);
-                    y += lineHeight;
+                        // Move to the next line
+                        line = word + " ";
+                        tempText.setString(line);
+                        y += lineHeight;
+                    }
+                    else
+                    {
+                        line += word + " ";
+                        tempText.setString(line);
+                    }
                 }
-                else
-                {
-                    line += word + " ";
-                    tempText.setString(line);
-                }
-            }
-            tempText.setString(line);
-            tempText.setPosition(x, y);  // Update position
-            window.draw(tempText);
-        };
+                tempText.setString(line);
+                tempText.setPosition(x, y);  // Update position
+                window.draw(tempText);
+            };
 
-    stringstream ownerStr;
+        window.draw(commnt_count);
 
-    if (UOwner != nullptr)
-    {
-        ownerStr << UOwner->getUserID() << " : " << UOwner->getFirstName() << " " << UOwner->getLastName();
-    }
-    else if (POwner != nullptr)
-    {
-        ownerStr << POwner->getPageID() << " : " << POwner->getTitle();
-    }
+        stringstream ownerStr;
 
-    Owner_desc.setString(ownerStr.str());
-    float xOffset = Owner_desc.getGlobalBounds().width + 307.f;
-
-    window.draw(Owner_desc);
-
-    if (activity != nullptr)
-    {
-        activity->PrintActivity(window, xOffset);
-    }
-    string desc1 = "\"" + description + "\"";
-    wrapText(desc1);
-
-    /*cout << "\nComment Section:" << endl;
-
-    if (CommentCount != 0)
-    {
-        for (int i = 0; i < CommentCount; i++)
+        if (UOwner != nullptr)
         {
-            cout << "Comment # " << i + 1 << " : " << endl;
-            comments[i]->Display_Comment();
+            ownerStr << UOwner->getUserID() << " : " << UOwner->getFirstName() << " " << UOwner->getLastName();
+        }
+        else if (POwner != nullptr)
+        {
+            ownerStr << POwner->getPageID() << " : " << POwner->getTitle();
+        }
+
+        Owner_desc.setString(ownerStr.str());
+        float xOffset = Owner_desc.getGlobalBounds().width + 307.f;
+
+        window.draw(Owner_desc);
+
+        if (activity != nullptr)
+        {
+            activity->PrintActivity(window, xOffset);
+        }
+        string desc1 = "\"" + description + "\"";
+        wrapText(desc1);
+
+        PublishedDate->PrintDate(window);
+    }
+
+    if (ShowCommentSection == true)
+    {
+        if (CommentCount != 0)
+        {
+            for (int i = 0; i < CommentCount; i++)
+            {
+                comments[i]->Display_Comment(window);
+            }
+        }
+        else
+        {
+            cout << "No Comments." << endl;
         }
     }
-    else
-    {
-        cout << "No Comments." << endl;
-    }*/
 }
 
 

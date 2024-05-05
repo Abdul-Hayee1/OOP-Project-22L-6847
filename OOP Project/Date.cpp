@@ -20,9 +20,22 @@ Date::Date(const Date& obj)
 	Year = obj.Year;
 }
 
-void Date::PrintDate()
+void Date::PrintDate(sf::RenderWindow& window)
 {
-	cout << "Date: " << Day << " " << Month << " " << Year << endl;
+	font.loadFromFile("images/Segoe UI Historic.ttf");
+	stringstream ss;
+	sf::Text text;
+	text.setFont(font);
+	text.setFillColor(sf::Color(101, 103, 107));
+	text.setCharacterSize(22);
+	text.setPosition(300.f, 165.f);
+
+    ss << "Posted on : " << Day << "-" << Month << "-" << Year << endl;
+
+	text.setString(ss.str());
+
+	window.draw(text);
+
 }
 
 
