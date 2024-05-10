@@ -33,6 +33,11 @@ int Page::getPost_Count()
     return PostCount;
 }
 
+Post* Page::getTimeline(int index)
+{
+    return timeline[index];
+}
+
 // Functions
 void Page::SetTimeline(Post** AllPosts, const int& MaxPosts)
 {

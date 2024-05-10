@@ -31,6 +31,7 @@ Post::Post(string postid, Date* pubDate, string desc, Activity* act, string owne
     UOwner = nullptr;
 }
 
+
 // Getters
 string Post::getOwnerID()
 {
@@ -50,6 +51,11 @@ int Post::getNo_Of_Likes()
 string Post::getLikedByID(int index)
 {
 	return UsersWhoLiked[index];
+}
+
+Date* Post::getPublishedDate()
+{
+    return PublishedDate;
 }
 
 
@@ -76,6 +82,23 @@ void Post::AddComment(string description, Page* page)
 	{
 		cout << "Max Comment Limit Reached." << endl;
 	}
+}
+
+void Post::Add_Like(string ID)
+{
+    for (int i = 0; i < no_of_likes; i++)
+    {
+
+    }
+    if (no_of_likes < 10)
+    {
+        UsersWhoLiked[no_of_likes++] = ID;
+    }
+}
+
+void Post::Remove_Like()
+{
+    UsersWhoLiked[no_of_likes--] = "";
 }
 
 void Post::AssigningOwner(User** users,Page** pages, const int MaxUsers,const int MaxPages)
@@ -118,7 +141,7 @@ void Post::Display_Post(sf::RenderWindow& window, bool ShowCommentSection)
     Owner_desc.setFont(font);
     Owner_desc.setFillColor(sf::Color(5, 5, 5));
     Owner_desc.setCharacterSize(21);
-    Owner_desc.setPosition(300.f, 122.f);
+    Owner_desc.setPosition(344.f, 125.f);
     commnt_count.setString(to_string(CommentCount));
     commnt_count.setCharacterSize(20);
     commnt_count.setPosition(836.f, 598.f);
@@ -180,7 +203,7 @@ void Post::Display_Post(sf::RenderWindow& window, bool ShowCommentSection)
         }
 
         Owner_desc.setString(ownerStr.str());
-        float xOffset = Owner_desc.getGlobalBounds().width + 307.f;
+        float xOffset = Owner_desc.getGlobalBounds().width + 351.f;
 
         window.draw(Owner_desc);
 
@@ -192,7 +215,36 @@ void Post::Display_Post(sf::RenderWindow& window, bool ShowCommentSection)
         wrapText(desc1);
 
         PublishedDate->PrintDate(window);
+
+        // Profile Pic
+        sf::Vector2f Position(268.f, 122.f);
+        float smallfactor = 0.133f;
+
+        if (UOwner != nullptr)
+        {
+            UOwner->Display_ProfilePic(window, Position, smallfactor);
+        }
+
+        // Like 
+        sf::Texture like_icon;
+        like_icon.loadFromFile("images/LIKE.png");
+        sf::Sprite like_icon_sprite;
+        like_icon_sprite.setTexture(like_icon);
+        like_icon_sprite.setScale(0.045f, 0.045f);
+        like_icon_sprite.setPosition(276.f, 598.f);
+        sf::Text text1(to_string(no_of_likes), font, 20);
+        text1.setFillColor(sf::Color(101, 103, 107));
+        text1.setPosition(307.f, 598.f);
+
+        window.draw(like_icon_sprite);
+        window.draw(text1);
     }
+
+    sf::Vector2f box_position(330.f, 195.f);
+    sf::Vector2f comment_position(340.f, 235.f);
+    sf::Vector2f profile_position(260.f, 200);
+    sf::Vector2f commentor_position(340.f, 200.f);
+    float smallfactor2 = 0.135f;
 
     if (ShowCommentSection == true)
     {
@@ -200,7 +252,11 @@ void Post::Display_Post(sf::RenderWindow& window, bool ShowCommentSection)
         {
             for (int i = 0; i < CommentCount; i++)
             {
-                comments[i]->Display_Comment(window);
+                comments[i]->Display_Comment(window, box_position, comment_position, profile_position, commentor_position, smallfactor2);
+                box_position.y += 100;
+                comment_position.y += 100;
+                profile_position.y += 100;
+                commentor_position.y += 100;
             }
         }
         else

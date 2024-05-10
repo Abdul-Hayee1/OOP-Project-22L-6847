@@ -10,12 +10,15 @@ User::User()
     timeline = nullptr;
     FriendList = nullptr;
     LikedPages = nullptr;
+    memories = nullptr;
     friendCount = 0;
     likedPgsCount = 0;
     PostCount = 0;
+    MemoryCount = 0;
     CurrentPostIndex = 0;
     CurrentHomeIndex = 0;
     HomePostsCount = 0;
+    Home = nullptr;
 }
 
 User::User(string userid, string fn, string ln, string* friendIds, int fdcount, string* likedpgids, int likedPgCount, string img_path) : UserID(userid), First_Name(fn), Last_Name(ln), friendIDs(friendIds), friendCount(fdcount), liked_PageIDs(likedpgids), likedPgsCount(likedPgCount), image_path(img_path)
@@ -24,11 +27,14 @@ User::User(string userid, string fn, string ln, string* friendIds, int fdcount, 
     FriendList = new User * [friendCount];
     LikedPages = new Page * [likedPgsCount];
     PostCount = 0;
+    MemoryCount = 0;
     image.loadFromFile(image_path);
     image_sprite.setTexture(image);
     CurrentPostIndex = 0;
-    CurrentHomeIndex = 1;
+    CurrentHomeIndex = 0;
     HomePostsCount = 0;
+    Home = new Post * [MAX_POST_LIMIT];
+    memories = nullptr;
 }
 
 //Getters
@@ -57,11 +63,23 @@ int User::getPost_Count()
     return PostCount;
 }
 
+Post* User::getTimeline(int index)
+{
+    return timeline[index];
+}
+
+int User::getHomePostsCount()
+{
+    return HomePostsCount;
+}
+
+
 // Setters
 void User::setCurrentPostIndex()
 {
     CurrentPostIndex = 0;
 }
+
 
 //Functions
 void User::Display_FriendList(sf::RenderWindow& window, User** All_Users, int MaxUsers)
@@ -148,6 +166,35 @@ void User::SetTimeline(Post** AllPosts, const int& MaxPosts)
             timeline[PostCount++] = AllPosts[i];
         }
     }
+
+    memories = new Memory * [PostCount];
+}
+
+void User::SetFriends_and_Pages(User** users, Page** pages, const int& MaxUsers, const int& MaxPages)
+{
+    for (int i = 0; i < friendCount; i++)
+    {
+        for (int j = 0; j < MaxUsers; j++)
+        {
+            if (friendIDs[i] == users[j]->getUserID())
+            {
+                FriendList[i] = users[j];
+                break;
+            }
+        }
+    }
+
+    for (int i = 0; i < likedPgsCount; i++)
+    {
+        for (int j = 0; j < MaxPages; j++)
+        {
+            if (liked_PageIDs[i] == pages[j]->getPageID())
+            {
+                LikedPages[i] = pages[j];
+                break;
+            }
+        }
+    }
 }
 
 void User::Display(sf::RenderWindow& window, const sf::Vector2f& position)
@@ -170,42 +217,114 @@ void User::Display(sf::RenderWindow& window, const sf::Vector2f& position)
 
 void User::DisplayTimeline(sf::RenderWindow& window, const sf::Event& event, bool ShowCommentSection)
 {
+    font.loadFromFile("images/Segoe UI Historic.ttf");
     post_num_text.setFont(font);
     post_num_text.setFillColor(sf::Color(101, 103, 107));
     post_num_text.setPosition(1000.f, 550.f);
     post_num_text.setCharacterSize(28);
     stringstream ss;
 
-    if (ShowCommentSection == false)
+    int totalItemCount = MemoryCount + PostCount;
+
+    bool isMemory = (CurrentPostIndex < MemoryCount);
+
+    if (event.type == sf::Event::KeyPressed)
     {
-        if (event.type == sf::Event::KeyPressed)
+        if (event.key.code == sf::Keyboard::Right)
         {
-            if (event.key.code == sf::Keyboard::Right)
+            if (CurrentPostIndex < totalItemCount - 1)
             {
-                if (CurrentPostIndex < PostCount - 1)
-                    CurrentPostIndex++;
+                CurrentPostIndex++;
             }
-            else if (event.key.code == sf::Keyboard::Left)
+          
+            if (CurrentPostIndex >= MemoryCount && CurrentPostIndex < totalItemCount)
             {
-                if (CurrentPostIndex > 0)
-                    CurrentPostIndex--;
+                isMemory = false;
+            }
+        }
+        else if (event.key.code == sf::Keyboard::Left)
+        {
+            if (CurrentPostIndex > 0)
+            {
+                CurrentPostIndex--;
+            }
+
+            if (CurrentPostIndex < MemoryCount)
+            {
+                isMemory = true;
             }
         }
     }
-        ss << CurrentPostIndex + 1 << " of " << PostCount;
-        post_num_text.setString(ss.str());
 
-        window.draw(post_num_text);
-        timeline[CurrentPostIndex]->Display_Post(window, ShowCommentSection);
+    ss << CurrentPostIndex + 1 << " of " << totalItemCount;
+    post_num_text.setString(ss.str());
+
+    if (isMemory == true)
+    {
+        memories[CurrentPostIndex]->ViewMemory(window);
+    }
+    else if(isMemory == false)
+    {
+        int postIndex = CurrentPostIndex - MemoryCount;
+        timeline[postIndex]->Display_Post(window, ShowCommentSection);
+    }
+
+    window.draw(post_num_text);
+}
+
+void User::addMemory(string Text, Date* MemoryDate, string postID)
+{
+    bool found = false;
+    for (int i = 0; i < PostCount; i++)
+    {
+        if (timeline[i]->getPostID() == postID)
+        {
+            memories[MemoryCount++] = new Memory(Text, timeline[i], MemoryDate);
+
+            found = true;
+            break;
+        }
+    }
+}
+
+void User::SetHome(Date* CurrentDate)
+{
+    for (int i = 0; i < friendCount; i++)
+    {
+        for (int j = 0; j < FriendList[i]->getPost_Count(); j++)
+        {
+            if (CurrentDate == FriendList[i]->getTimeline(j)->getPublishedDate())
+            {
+                Home[HomePostsCount++] = FriendList[i]->getTimeline(j);
+            }
+        }
+    }
+
+    for (int i = 0; i < likedPgsCount; i++)
+    {
+        for (int j = 0; j < LikedPages[i]->getPost_Count(); j++)
+        {
+            if (CurrentDate == LikedPages[i]->getTimeline(j)->getPublishedDate())
+            {
+                Home[HomePostsCount++] = LikedPages[i]->getTimeline(j);
+            }
+        }
+    }
 }
 
 void User::Display_Home(sf::RenderWindow& window, const sf::Event& event, bool ShowCommentSection)
 {
+    font.loadFromFile("images/Segoe UI Historic.ttf");
+
+    sf::Text defaultText("No New Posts.", font, 35);
+    defaultText.setFillColor(sf::Color(101, 103, 107));
+    defaultText.setPosition(530.f, 330.f);
     post_num_text.setFont(font);
     post_num_text.setFillColor(sf::Color(101, 103, 107));
     post_num_text.setPosition(1000.f, 550.f);
     post_num_text.setCharacterSize(28);
     stringstream ss;
+
 
     if (ShowCommentSection == false)
     {
@@ -224,15 +343,18 @@ void User::Display_Home(sf::RenderWindow& window, const sf::Event& event, bool S
         }
     }
 
-    for (int i = 0; i < friendCount; i++)
+    if (HomePostsCount != 0)
     {
-        /*FriendList[i]->DisplayTimeline();*/
+        Home[CurrentHomeIndex]->Display_Post(window, ShowCommentSection);
+        window.draw(post_num_text);
+    }
+    else if (HomePostsCount == 0)
+    {
+        window.draw(defaultText);
     }
 
-    ss << CurrentHomeIndex << " of " << HomePostsCount;
+    ss << CurrentHomeIndex + 1 << " of " << HomePostsCount;
     post_num_text.setString(ss.str());
-    window.draw(post_num_text);
-
 }
 
 // Destructor

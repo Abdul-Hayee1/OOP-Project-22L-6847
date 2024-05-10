@@ -8,16 +8,29 @@ Date::Date()
 	Year = 0;
 }
 
-Date::Date(int d, int m, int y) :Day(d), Month(m), Year(y)
-{
-
-}
+Date::Date(int d, int m, int y) :Day(d), Month(m), Year(y) {}
 
 Date::Date(const Date& obj)
 {
 	Day = obj.Day;
 	Month = obj.Month;
 	Year = obj.Year;
+}
+
+Date& Date::operator=(const Date& obj)
+{
+	Day = obj.Day;
+	Month = obj.Month;
+	Year = obj.Year;
+
+	return *this;
+}
+
+bool Date::operator==(const Date* other) const 
+{
+	return (this->Day == other->Day &&
+		this->Month == other->Month &&
+		this->Year == other->Year);
 }
 
 void Date::PrintDate(sf::RenderWindow& window)
@@ -28,9 +41,9 @@ void Date::PrintDate(sf::RenderWindow& window)
 	text.setFont(font);
 	text.setFillColor(sf::Color(101, 103, 107));
 	text.setCharacterSize(22);
-	text.setPosition(300.f, 165.f);
+	text.setPosition(343.f, 162.f);
 
-    ss << "Posted on : " << Day << "-" << Month << "-" << Year << endl;
+    ss << "Published : " << Day << "-" << Month << "-" << Year << endl;
 
 	text.setString(ss.str());
 

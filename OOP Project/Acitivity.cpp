@@ -49,7 +49,7 @@ void Activity::PrintActivity(sf::RenderWindow& window, float xOffset)
 	input << Value << ".";
 
 	text.setString(input.str());
-	text.setPosition(xOffset, 123.f);
+	text.setPosition(xOffset, 126.f);
 
 	window.draw(text);
 

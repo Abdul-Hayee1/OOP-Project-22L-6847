@@ -117,7 +117,7 @@ void SocialNetworkApp::Read_PostData_FromFile()
 
 			int noOflikes = 0;
 			string likedID;
-			string* IDsWhoLiked = new string[MaxPages + MaxUsers];
+			string* IDsWhoLiked = new string[MAX_LIKES_ON_POST];
 			while (PostFile >> likedID && likedID != "-1")
 			{
 				IDsWhoLiked[noOflikes++] = likedID;
@@ -134,7 +134,7 @@ void SocialNetworkApp::Read_PostData_FromFile()
 
 			int noOflikes = 0;
 			string likedID;
-			string* IDsWhoLiked = new string[MaxPages + MaxUsers];
+			string* IDsWhoLiked = new string[MAX_LIKES_ON_POST];
 			while (PostFile >> likedID && likedID != "-1")
 			{
 				IDsWhoLiked[noOflikes++] = likedID;
@@ -343,7 +343,7 @@ void SocialNetworkApp::Display_CurrentUser(sf::RenderWindow& window)
 	window.draw(defaultText);
 }
 
-void SocialNetworkApp::Display_UserMenu(sf::RenderWindow& window)
+void SocialNetworkApp::Display_UserMenu(sf::RenderWindow& window) const
 {
 	sf::Texture Main_Menu, Menu_bg;
 	sf::Sprite Menu_sprite, menu_bg_sprite;
@@ -426,7 +426,19 @@ void SocialNetworkApp::Run()
 		posts[i]->AssigningOwner(users, pages, MaxUsers, MaxPages);
 	}
 
+	// Assigning Friends and Liked Pages
+	for (int i = 0; i < MaxUsers; i++)
+	{
+		users[i]->SetFriends_and_Pages(users, pages, MaxUsers, MaxPages);
+	}
 	
+	CurrentDate = new Date(14, 11, 2017);
+
+	// Setting User's Home
+	for (int i = 0; i < MaxUsers; i++)
+	{
+		users[i]->SetHome(CurrentDate);
+	}
 
 	// User Interface
 	sf::RenderWindow window(sf::VideoMode(WIN_WIDTH, WIN_HEIGHT), "SocialNetworkApp", sf::Style::None);
@@ -434,7 +446,7 @@ void SocialNetworkApp::Run()
 	// Graphical User Interface
 	bg_image1.loadFromFile("images/fb_blue_bg.png");
 	bg_sprite1.setTexture(bg_image1);
-	white_logo.loadFromFile("images/white_logo.png");
+	white_logo.loadFromFile("images/white_logo.png");	
 	wlogo_sprite.setTexture(white_logo);
 	wlogo_sprite.setPosition(20, 10);
 	blue_button.loadFromFile("images/blue_button.png");
@@ -445,6 +457,16 @@ void SocialNetworkApp::Run()
 	back_button_sprite.setScale(0.3f, 0.3f);
 	back_button_sprite.setPosition(20.f, 100.f);
 	sf::Color originalColor = back_button_sprite.getColor();
+	// Logout Button
+	logout.loadFromFile("images/logout.png");
+	logout_button_sprite.setTexture(logout);
+	sf::Color originalColor1 = logout_button_sprite.getColor();
+	logout_button_sprite.setScale(1.4f, 1.4f);
+	logout_button_sprite.setPosition(1224.f,100.f);
+	sf::Text logout_text("Logout", font1, 26);
+	logout_text.setFillColor(sf::Color(101, 103, 107));
+	logout_text.setPosition(1125.f, 98.f);
+
 
 
 	// Background 2
@@ -463,7 +485,7 @@ void SocialNetworkApp::Run()
 
 	// Set Texts
 	sf::Text bluebutton_text("View Current Users", font, 22);
-	bluebutton_text.setFillColor(sf::Color::Yellow);
+	bluebutton_text.setFillColor(sf::Color(255, 255, 0));
 	sf::Text CurrentUserText;
 	CurrentUserText.setFont(font);
 	CurrentUserText.setCharacterSize(24);
@@ -535,7 +557,17 @@ void SocialNetworkApp::Run()
 	comment_desc_text.setFont(font1);
 	comment_desc_text.setCharacterSize(24);
 	comment_desc_text.setFillColor(sf::Color::Black);
-	comment_desc_text.setPosition(300.f, 400.f);
+	comment_desc_text.setPosition(420.f, 350.f);
+	sf::Text defaultText_comment("Add a comment...", font1, 25);
+	defaultText_comment.setFillColor(sf::Color(101, 103, 107));
+	defaultText_comment.setPosition(420.f, 350.f);
+
+	add_commentBox.loadFromFile("images/add_comment_box.png");
+	add_commentBox_sprite.setTexture(add_commentBox);
+	add_commentBox_sprite.setScale(1.5f, 1.8f);
+	add_commentBox_sprite.setPosition(390.f, 320.f);
+	sf::Vector2f add_comm_profile_position(280.f, 330.f);
+	float scaleFactor_comm_profile = 0.22f;
 
 	sf::RectangleShape comment_box(sf::Vector2f(680.f, 62.f));  // To activate comment event
 	comment_box.setOutlineColor(sf::Color::Black);
@@ -544,10 +576,10 @@ void SocialNetworkApp::Run()
 	comment_box.setFillColor(sf::Color::Transparent);
 	sf::FloatRect smallerRegion(262.f, 603.f, 680.f, 62.f);
 
-	comment_bg.loadFromFile("images/comment_bg.png");
+	comment_bg.loadFromFile("images/3d_bg3.png");
 	comment_bg_sprite.setTexture(comment_bg);
-	comment_bg_sprite.setPosition(280.f, 100.f);
-	comment_bg_sprite.setScale(1.f, 0.8);
+	comment_bg_sprite.setPosition(220.f, 100.f);
+	comment_bg_sprite.setScale(1.f, 1.25);
 
 	// CHOICE == 3
 	view_likes_bg.loadFromFile("images/view_likes_bg.png");
@@ -557,7 +589,7 @@ void SocialNetworkApp::Run()
 	sf::Text likePage_id_text;
 	likePage_id_text.setFont(font);
 	likePage_id_text.setCharacterSize(29);
-	likePage_id_text.setPosition(605.f, 125.f);
+	likePage_id_text.setPosition(590.f, 125.f);
 	likePage_id_text.setFillColor(sf::Color::Black);
 
 	// Timeline
@@ -565,20 +597,42 @@ void SocialNetworkApp::Run()
 	TimelineDefaulText.setFillColor(sf::Color(101, 103, 107));
 	TimelineDefaulText.setPosition(525.f, 350.f);
 
+	// Memory
+	sf::Text MemoryText_text;
+	MemoryText_text.setFont(font1);
+	MemoryText_text.setCharacterSize(26);
+	MemoryText_text.setFillColor(sf::Color::Black);
+	MemoryText_text.setPosition(522.f, 320.f);
+	sf::Text defaultMemoryText("Enter Memory Text:", font1, 28);
+	defaultMemoryText.setPosition(512.f, 277.f);
+	defaultMemoryText.setFillColor(sf::Color::Black);
+
+	sf::Text defaultText6("Memory Posted.", font1, 35);
+	defaultText6.setFillColor(sf::Color(101, 103, 107));
+	defaultText6.setPosition(530.f, 330.f);
+
 	// Bools
 	bool BlueButtonClicked = false;
 	bool CurrentUser_Entered = false;
+	bool LogoutButtonClicked = false;
 	bool keyPressed = false;
 	bool ChoiceEntered = false;
 	bool PostID_Entered = false;
 	bool PageID_Entered = false;
 	bool ShowCommentSection = false;
 	bool Comment_Entered = false;
+	bool MemoryTextEntered = false;
+	bool LikeButtonClicked = false;
+	bool UnlikeButtonClicked = false;
+	bool LikedState = false;
+	bool MemoryEntered = false;
+	bool HomeSet = false;
 
 	// Input Strings
 	string ID_toViewPost;
 	string ID_toViewPage;
 	string comment_description;
+	string MemoryText;
 
 	// SFML 
 	while (window.isOpen())
@@ -634,10 +688,128 @@ void SocialNetworkApp::Run()
 			}
 			else if (BlueButtonClicked && CurrentUser_Entered)
 			{
+				if (event.type == sf::Event::MouseButtonPressed)  // Logout Button
+				{
+					if (event.mouseButton.button == sf::Mouse::Left)
+					{
+						if (logout_button_sprite.getGlobalBounds().contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y)))
+						{
+							logout_button_sprite.setColor(sf::Color::Transparent);
+							CurrentUser_Entered = false;
+						}
+					}
+				}
+
+
 				if (ChoiceEntered == true)
 				{
+					if (Choice == 1)
+					{
+						if (ShowCommentSection == false)
+						{
+							if (event.type == sf::Event::MouseButtonPressed)  // back button
+							{
+								if (event.mouseButton.button == sf::Mouse::Left)
+								{
+									if (back_button_sprite.getGlobalBounds().contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y)))
+									{
+										back_button_sprite.setColor(sf::Color::Transparent);
+										ChoiceEntered = false;
+									}
+								}
+							}
+						}
 
-					if (Choice == 3)
+					}
+					else if (Choice == 2)
+					{
+						if (PostID_Entered == false)
+						{
+							if (event.type == sf::Event::MouseButtonPressed)  // back button
+							{
+								if (event.mouseButton.button == sf::Mouse::Left)
+								{
+									if (back_button_sprite.getGlobalBounds().contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y)))
+									{
+										back_button_sprite.setColor(sf::Color::Transparent);
+										ChoiceEntered = false;
+									}
+								}
+							}
+
+							if (event.type == sf::Event::TextEntered)
+							{
+								if (event.text.unicode == '\b' && !ID_toViewPost.empty())
+								{
+									ID_toViewPost.pop_back();
+									PostIdText.setString(ID_toViewPost);
+								}
+								else if (event.text.unicode < 128 && event.text.unicode != '\r' && event.text.unicode != '\n')
+								{
+									ID_toViewPost += static_cast<char>(event.text.unicode);
+									PostIdText.setString(ID_toViewPost);
+								}
+							}
+							else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter && !ID_toViewPost.empty())
+							{
+								PostID_Entered = true;
+
+								textBoxOutline1.setOutlineColor(sf::Color::Transparent);
+								defaultText2.setFillColor(sf::Color::Transparent);
+								PostIdText.setFillColor(sf::Color::Transparent);
+								line3.setFillColor(sf::Color::Transparent);
+							}
+						}
+						else if (PostID_Entered == true)
+						{
+							if (event.type == sf::Event::MouseButtonPressed)  // back button
+							{
+								if (event.mouseButton.button == sf::Mouse::Left)
+								{
+									if (back_button_sprite.getGlobalBounds().contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y)))
+									{
+										PostID_Entered = false;
+										textBoxOutline1.setOutlineColor(sf::Color(0, 100, 209));
+										defaultText2.setFillColor(sf::Color::Black);
+										PostIdText.setFillColor(sf::Color::Black);
+										line3.setFillColor(sf::Color::Black);
+										ID_toViewPost = "";
+										PostIdText.setString(ID_toViewPost);
+									}
+								}
+							}
+
+							if (LikedState == false && LikeButtonClicked == false && UnlikeButtonClicked == false)
+							{
+								if (event.type == sf::Event::MouseButtonPressed)
+								{
+									if (event.mouseButton.button == sf::Mouse::Left)
+									{
+										if (smallerRegion.contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y)))
+										{
+											LikeButtonClicked = true;
+											LikedState = true;
+										}
+									}
+								}
+							}
+							else if (LikedState == true && UnlikeButtonClicked == false)
+							{
+								if (event.type == sf::Event::MouseButtonPressed)
+								{
+									if (event.mouseButton.button == sf::Mouse::Left)
+									{
+										if (smallerRegion.contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y)))
+										{
+											UnlikeButtonClicked = true;
+											LikedState = false;
+										}
+									}
+								}
+							}
+						}
+					}
+					else if (Choice == 3)
 					{
 						if (PostID_Entered == false)
 						{
@@ -671,9 +843,14 @@ void SocialNetworkApp::Run()
 							else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter && !ID_toViewPost.empty())
 							{
 								PostID_Entered = true;
+
+								textBoxOutline1.setOutlineColor(sf::Color::Transparent);
+								defaultText2.setFillColor(sf::Color::Transparent);
+								PostIdText.setFillColor(sf::Color::Transparent);
+								line3.setFillColor(sf::Color::Transparent);
 							}
 						}
-						if (PostID_Entered == true)
+						else if (PostID_Entered == true)
 						{
 							if (event.type == sf::Event::MouseButtonPressed)  // back button
 							{
@@ -682,6 +859,12 @@ void SocialNetworkApp::Run()
 									if (back_button_sprite.getGlobalBounds().contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y)))
 									{
 										PostID_Entered = false;
+										textBoxOutline1.setOutlineColor(sf::Color(0, 100, 209));
+										defaultText2.setFillColor(sf::Color::Black);
+										PostIdText.setFillColor(sf::Color::Black);
+										line3.setFillColor(sf::Color::Black);
+										ID_toViewPost = "";
+										PostIdText.setString(ID_toViewPost);
 									}
 								}
 							}
@@ -755,11 +938,16 @@ void SocialNetworkApp::Run()
 									if (event.text.unicode == '\b' && !comment_description.empty())
 									{
 										comment_description.pop_back();
+										if (comment_description.empty())
+										{
+											defaultText_comment.setFillColor(sf::Color(101, 103, 107));
+										}
 										comment_desc_text.setString(comment_description);
 									}
 									else if (event.text.unicode < 128 && event.text.unicode != '\r' && event.text.unicode != '\n')
 									{
 										comment_description += static_cast<char>(event.text.unicode);
+										defaultText_comment.setFillColor(sf::Color::Transparent);
 										comment_desc_text.setString(comment_description);
 									}
 								}
@@ -861,7 +1049,98 @@ void SocialNetworkApp::Run()
 					}
 					else if (Choice == 6)
 					{
+						if (PostID_Entered == false)
+						{
+							if (event.type == sf::Event::MouseButtonPressed)  // back button
+							{
+								if (event.mouseButton.button == sf::Mouse::Left)
+								{
+									if (back_button_sprite.getGlobalBounds().contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y)))
+									{
+										back_button_sprite.setColor(sf::Color::Transparent);
+										ChoiceEntered = false;
+									}
+								}
+							}
 
+							if (event.type == sf::Event::TextEntered)
+							{
+								if (event.text.unicode == '\b' && !ID_toViewPost.empty())
+								{
+									ID_toViewPost.pop_back();
+									PostIdText.setString(ID_toViewPost);
+								}
+								else if (event.text.unicode < 128 && event.text.unicode != '\r' && event.text.unicode != '\n')
+								{
+									ID_toViewPost += static_cast<char>(event.text.unicode);
+									PostIdText.setString(ID_toViewPost);
+								}
+							}
+							else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter && !ID_toViewPost.empty())
+							{
+								PostID_Entered = true;
+
+								textBoxOutline1.setOutlineColor(sf::Color::Transparent);
+								defaultText2.setFillColor(sf::Color::Transparent);
+								PostIdText.setFillColor(sf::Color::Transparent);
+								line3.setFillColor(sf::Color::Transparent);
+							}
+						}
+						else if (PostID_Entered == true)
+						{
+							if (event.type == sf::Event::MouseButtonPressed)  // back button
+							{
+								if (event.mouseButton.button == sf::Mouse::Left)
+								{
+									if (back_button_sprite.getGlobalBounds().contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y)))
+									{
+										PostID_Entered = false;
+										textBoxOutline1.setOutlineColor(sf::Color(0, 100, 209));
+										defaultText2.setFillColor(sf::Color::Black);
+										PostIdText.setFillColor(sf::Color::Black);
+										line3.setFillColor(sf::Color::Black);
+										ID_toViewPost = "";
+										PostIdText.setString(ID_toViewPost);
+									}
+								}
+							}
+
+							if (MemoryTextEntered == false)
+							{
+								if (event.type == sf::Event::TextEntered)
+								{
+									if (event.text.unicode == '\b' && !MemoryText.empty())
+									{
+										MemoryText.pop_back();
+										MemoryText_text.setString(MemoryText);
+									}
+									else if (event.text.unicode < 128 && event.text.unicode != '\r' && event.text.unicode != '\n')
+									{
+										MemoryText += static_cast<char>(event.text.unicode);
+										MemoryText_text.setString(MemoryText);
+									}
+								}
+								else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter && !MemoryText.empty())
+								{
+									MemoryTextEntered = true;
+									MemoryEntered = true;
+								}
+							}
+							else if (MemoryTextEntered == true)
+							{
+								if (event.type == sf::Event::MouseButtonPressed)  // back button
+								{
+									if (event.mouseButton.button == sf::Mouse::Left)
+									{
+										if (back_button_sprite.getGlobalBounds().contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y)))
+										{
+											back_button_sprite.setColor(sf::Color::Transparent);
+											ChoiceEntered = false;
+										}
+									}
+								}
+							}
+						}
 					}
 					else if (Choice == 7)
 					{
@@ -1031,10 +1310,11 @@ void SocialNetworkApp::Run()
 					{
 						Choice = std::stoi(ChoiceText.getString().toAnsiString());
 						ChoiceEntered = true;
+						logout_button_sprite.setColor(sf::Color::Transparent);
+						logout_text.setFillColor(sf::Color::Transparent);
 					}
 				}
 			}
-
 		}
 		// Drawing Sequence
 		window.clear();
@@ -1075,6 +1355,11 @@ void SocialNetworkApp::Run()
 			{
 				Display_UserMenu(window);
 				window.draw(ChoiceText);
+
+				logout_button_sprite.setColor(originalColor1);
+				window.draw(logout_button_sprite);
+				logout_text.setFillColor(sf::Color(101, 103, 107));
+				window.draw(logout_text);
 			}
 
 			if (ChoiceEntered)
@@ -1082,14 +1367,54 @@ void SocialNetworkApp::Run()
 				back_button_sprite.setColor(originalColor);
 				window.draw(back_button_sprite);
 
-
 				if (Choice == 1)
 				{
-					
+					if (ShowCommentSection == false)
+					{
+						if (users[Current_User_Index]->getHomePostsCount() != 0)
+						{
+							window.draw(post_bg_sprite);
+						}
+						users[Current_User_Index]->Display_Home(window, event, ShowCommentSection);
+					}
 				}
 				else if (Choice == 2)
 				{
+					window.draw(textBoxOutline1);
+					window.draw(defaultText2);
+					window.draw(line3);
+					window.draw(PostIdText);
 
+					if (PostID_Entered)
+					{
+						window.draw(post_bg_sprite);
+						View_Post_By_ID(window, ID_toViewPost, ShowCommentSection);
+
+						if (LikeButtonClicked == true)
+						{
+							for (int i = 0; i < MaxPosts; i++)
+							{
+								if (posts[i]->getPostID() == ID_toViewPost)
+								{
+									posts[i]->Add_Like(users[Current_User_Index]->getUserID());
+									break;
+								}
+							}
+							LikeButtonClicked = false;
+						}
+						else if (UnlikeButtonClicked == true)
+						{
+							for (int i = 0; i < MaxPosts; i++)
+							{
+								if (posts[i]->getPostID() == ID_toViewPost)
+								{
+									posts[i]->Remove_Like();
+									break;
+								}
+							}
+							UnlikeButtonClicked = false;
+						}
+					}
 				}
 				else if (Choice == 3)
 				{
@@ -1114,8 +1439,9 @@ void SocialNetworkApp::Run()
 
 					if (PostID_Entered == true && Comment_Entered == false)
 					{
-						// draw add comment box
-
+						users[Current_User_Index]->Display_ProfilePic(window, add_comm_profile_position, scaleFactor_comm_profile);
+						window.draw(add_commentBox_sprite);
+						window.draw(defaultText_comment);
 						window.draw(comment_desc_text);
 					}
 
@@ -1155,7 +1481,29 @@ void SocialNetworkApp::Run()
 				}
 				else if (Choice == 6)
 				{
+					window.draw(textBoxOutline1);
+					window.draw(defaultText2);
+					window.draw(line3);
+					window.draw(PostIdText);
 
+					if (PostID_Entered == true)
+					{
+						if (MemoryTextEntered == false)
+						{
+							window.draw(defaultMemoryText);
+							window.draw(MemoryText_text);
+						}
+						else if (MemoryTextEntered == true)
+						{
+							users[Current_User_Index]->addMemory(MemoryText, CurrentDate, ID_toViewPost);
+							MemoryTextEntered = false;
+						}
+
+						if (MemoryEntered == true)
+						{
+							window.draw(defaultText6);
+						}
+					}
 				}
 				else if (Choice == 7)
 				{
@@ -1188,7 +1536,7 @@ void SocialNetworkApp::Run()
 					window.draw(line3);
 					window.draw(PageIdText);
 
-					if (ShowCommentSection == false)
+					if (ShowCommentSection == false && PageID_Entered)
 					{
 						for (int i = 0; i < MaxPages; i++)
 						{
@@ -1206,7 +1554,7 @@ void SocialNetworkApp::Run()
 							}
 						}
 					}
-					else if (ShowCommentSection == true)
+					else if (ShowCommentSection == true && PageID_Entered)
 					{
 						window.draw(comment_bg_sprite);
 						View_Page_By_ID(window, event, ID_toViewPage, ShowCommentSection);

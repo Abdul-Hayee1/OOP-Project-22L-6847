@@ -45,10 +45,13 @@ public:
 	string getPostID();
 	int getNo_Of_Likes();
 	string getLikedByID(int index);
+	Date* getPublishedDate();
 
 	// Functions
 	void AddComment(string,User*);
 	void AddComment(string, Page*);
+	void Add_Like(string ID);
+	void Remove_Like();
 	void AssigningOwner(User**, Page**, const int, const int);
 	void Display_Post(sf::RenderWindow&, bool);
 

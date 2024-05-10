@@ -1,8 +1,26 @@
 #include "Memory.h"
 
-Memory::Memory(Post* origPostPtr, string PostID, Date* PublishedDate, string Description, string* UsersWhoLiked, int NoOfLikes, Activity* activity, string OwnerID, Comment** comments, int CommentCount)
-    : Post(PostID, PublishedDate, Description,activity,OwnerID, UsersWhoLiked, NoOfLikes), MemoryOfPost(origPostPtr) {}
+// Constructors
+Memory::Memory()
+{
+	MemoryOfPost = nullptr;
+}
 
+Memory::Memory(string Text, Post* memoryOfPost, Date* MemoryDate) : Text(Text), MemoryOfPost(memoryOfPost), MemoryDate(MemoryDate) 
+{
+	MemoryOfPost = nullptr;
+}
+
+// Functions
+void Memory::ViewMemory(sf::RenderWindow& window)
+{
+	bool ShowCommentSection = false;
+	/*MemoryOfPost->Display_Post(window, ShowCommentSection);*/
+	cout << Text << endl;
+}
+
+
+// Destructors
 Memory::~Memory()
 {
 

@@ -3,7 +3,7 @@ u1	Amna Akram	u2	u3	u4	-1	p1	p2	-1 images/user_1_pf.jpg
 u2	Muhammad Ali	u1	u5	u6	-1	p2	p3	-1 images/user_2_pf.jpg
 u3	Waheed Khan	u1	u7	-1	-1 images/user_3_pf.jpg
 u4	Burhan Tahir	u1	u8	u9	u10	-1	p10	-1 images/user_4_pf.jpg
-u5	Hassan Sohail	u2	-1	p9	p10	-1 images/user_1_pf.jpg
+u5	Hassan Sohail	u2	-1	p9	p10	-1 images/user_5_pf.jpg
 u6	Saad Ali	u2	u11	-1	p8	-1 images/user_6_pf.jpg
 u7	Abdullah Nadeem	u3	u11	u12	-1	p1	p2	p5	p9	-1 images/user_7_pf.jpg
 u8	Nimra Batool	u4	u11	-1	-1 images/user_8_pf.jpg

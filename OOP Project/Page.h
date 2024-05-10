@@ -37,6 +37,7 @@ public:
 	string getPageID();
 	string getTitle();
 	int getPost_Count();
+	Post* getTimeline(int);
 
 	//Functions
 	void SetTimeline(Post**,const int&);

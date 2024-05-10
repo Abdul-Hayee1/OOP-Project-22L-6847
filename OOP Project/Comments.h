@@ -21,7 +21,7 @@ public:
 	Comment(string, Page*);
 
 	// Functions
-	void Display_Comment(sf::RenderWindow&);
+	void Display_Comment(sf::RenderWindow&, sf::Vector2f&, sf::Vector2f&, sf::Vector2f&, sf::Vector2f&, float);
 };
 
 #endif

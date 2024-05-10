@@ -7,17 +7,16 @@ using namespace std;
 
 class Post;
 
-class Memory : public Post {
+class Memory {
+	string Text;
 	Post* MemoryOfPost;
+	Date* MemoryDate;
 public:
-	/*Memory();*/
-	Memory(Post*, string, Date*,string,string*,int, Activity*,string,Comment**, int);
+	Memory();
+	Memory(string, Post*, Date*);
 
 	// Functions
-	void ViewMemory()
-	{
-
-	}
+	void ViewMemory(sf::RenderWindow&);
 
 	~Memory();
 };

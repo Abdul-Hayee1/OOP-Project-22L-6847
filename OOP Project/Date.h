@@ -19,6 +19,9 @@ public:
 	Date(int, int, int);
 	Date(const Date&);
 
+	Date& operator=(const Date& obj);
+	bool operator==(const Date* other) const;
+
 	// Functions
 	void PrintDate(sf::RenderWindow& window);
 
