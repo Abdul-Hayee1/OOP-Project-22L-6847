@@ -170,6 +170,25 @@ void User::SetTimeline(Post** AllPosts, const int& MaxPosts)
     memories = new Memory * [PostCount];
 }
 
+void User::DisplayTimeline_PostIDs(sf::RenderWindow& window)
+{
+    font.loadFromFile("images/Segoe UI Historic.ttf");
+    stringstream ss;
+
+    ss << "Timeline Posts:\n";
+    for (int i = 0; i < PostCount; i++)
+    {
+        ss << timeline[i]->getPostID();
+        ss << "\n";
+    }
+
+    sf::Text text(ss.str(), font, 26);
+    text.setFillColor(sf::Color::Black);
+    text.setPosition(540.f, 420.f);
+
+    window.draw(text);
+}
+
 void User::SetFriends_and_Pages(User** users, Page** pages, const int& MaxUsers, const int& MaxPages)
 {
     for (int i = 0; i < friendCount; i++)
@@ -261,7 +280,10 @@ void User::DisplayTimeline(sf::RenderWindow& window, const sf::Event& event, boo
 
     if (isMemory == true)
     {
-        memories[CurrentPostIndex]->ViewMemory(window);
+        if (memories != nullptr)
+        {
+            memories[CurrentPostIndex]->ViewMemory(window);
+        }
     }
     else if(isMemory == false)
     {
@@ -279,7 +301,7 @@ void User::addMemory(string Text, Date* MemoryDate, string postID)
     {
         if (timeline[i]->getPostID() == postID)
         {
-            memories[MemoryCount++] = new Memory(Text, timeline[i], MemoryDate);
+            memories[MemoryCount++] = new Memory(Text, MemoryDate, timeline[i]);
 
             found = true;
             break;
@@ -293,7 +315,11 @@ void User::SetHome(Date* CurrentDate)
     {
         for (int j = 0; j < FriendList[i]->getPost_Count(); j++)
         {
-            if (CurrentDate == FriendList[i]->getTimeline(j)->getPublishedDate())
+            Date* postDate = FriendList[i]->getTimeline(j)->getPublishedDate();
+
+            if ((*postDate == *CurrentDate) || (postDate->getDay() == CurrentDate->getDay() - 1 &&
+                postDate->getMonth() == CurrentDate->getMonth() &&
+                postDate->getYear() == CurrentDate->getYear()))
             {
                 Home[HomePostsCount++] = FriendList[i]->getTimeline(j);
             }
@@ -304,13 +330,19 @@ void User::SetHome(Date* CurrentDate)
     {
         for (int j = 0; j < LikedPages[i]->getPost_Count(); j++)
         {
-            if (CurrentDate == LikedPages[i]->getTimeline(j)->getPublishedDate())
+            Date* postDate = LikedPages[i]->getTimeline(j)->getPublishedDate();
+
+            if ((*postDate == *CurrentDate) || (postDate->getDay() == CurrentDate->getDay() - 1 &&
+                postDate->getMonth() == CurrentDate->getMonth() &&
+                postDate->getYear() == CurrentDate->getYear()))
             {
                 Home[HomePostsCount++] = LikedPages[i]->getTimeline(j);
             }
         }
     }
 }
+
+
 
 void User::Display_Home(sf::RenderWindow& window, const sf::Event& event, bool ShowCommentSection)
 {
@@ -341,12 +373,13 @@ void User::Display_Home(sf::RenderWindow& window, const sf::Event& event, bool S
                     CurrentHomeIndex--;
             }
         }
+
+        window.draw(post_num_text);
     }
 
     if (HomePostsCount != 0)
     {
         Home[CurrentHomeIndex]->Display_Post(window, ShowCommentSection);
-        window.draw(post_num_text);
     }
     else if (HomePostsCount == 0)
     {
@@ -360,5 +393,35 @@ void User::Display_Home(sf::RenderWindow& window, const sf::Event& event, bool S
 // Destructor
 User::~User()
 {
-    delete[] timeline;
+    if (memories != nullptr) 
+    {
+        for (int i = 0; i < MemoryCount; i++)
+        {
+            delete memories[i];
+        }
+        delete[] memories;
+    }
+
+    if (timeline != nullptr) 
+    {
+        for (int i = 0; i < PostCount; i++) 
+        {
+            delete timeline[i];
+        }
+        delete[] timeline;
+    }
+
+    if (Home != nullptr) 
+    {
+        for (int i = 0; i < HomePostsCount; i++) 
+        {
+            delete Home[i];
+        }
+        delete[] Home;
+    }
+
+    delete[] FriendList;
+    delete[] LikedPages;
+    delete[] friendIDs;
+    delete[] liked_PageIDs;
 }

@@ -58,6 +58,40 @@ Date* Post::getPublishedDate()
     return PublishedDate;
 }
 
+string Post::getDescription()
+{
+    return description;
+}
+
+string* Post::getUsersWhoLiked()
+{
+    return UsersWhoLiked;
+}
+
+bool Post::getUOwner()
+{
+    if (UOwner != nullptr)
+        return true;
+    else
+        return false;
+}
+
+bool Post::getPOwner()
+{
+    if (POwner != nullptr)
+        return true;
+    else
+        return false;
+}
+
+bool Post::getActivity()
+{
+    if (activity != nullptr)
+        return true;
+    else
+        return false;
+}
+
 
 // Functions
 void Post::AddComment(string description, User* user)
@@ -271,5 +305,14 @@ void Post::Display_Post(sf::RenderWindow& window, bool ShowCommentSection)
 // Destructor
 Post::~Post()
 {
+    if (comments != nullptr)
+    {
+        for (int i = 0; i < CommentCount; i++) 
+        {
+            delete comments[i];
+        }
+        delete[] comments;
+    }
 
+    delete[] UsersWhoLiked;
 }

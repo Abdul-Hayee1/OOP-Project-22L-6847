@@ -15,12 +15,18 @@ class Date {
 	int Year;
 	sf::Font font;
 public:
+	// Constructors
 	Date();
 	Date(int, int, int);
 	Date(const Date&);
 
+	// Getters
+	int getDay();
+	int getMonth();
+	int getYear();
+
 	Date& operator=(const Date& obj);
-	bool operator==(const Date* other) const;
+	bool operator==(const Date& other) const;
 
 	// Functions
 	void PrintDate(sf::RenderWindow& window);

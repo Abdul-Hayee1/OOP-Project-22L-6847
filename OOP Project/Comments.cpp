@@ -92,3 +92,6 @@ void Comment::Display_Comment(sf::RenderWindow& window, sf::Vector2f& box_positi
 
     wrapText(description);
 }
+
+// Destructors
+Comment::~Comment() {}

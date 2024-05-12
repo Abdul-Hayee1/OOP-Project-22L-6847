@@ -44,6 +44,7 @@ public:
 	void DisplayTimeline(sf::RenderWindow&, const sf::Event&, bool);
 
 	// Destructor
+	~Page();
 };
 
 #endif

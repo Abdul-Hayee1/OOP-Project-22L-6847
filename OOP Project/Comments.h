@@ -17,11 +17,15 @@ class Comment {
 	Page* Commented_By_Page;
 	sf::Font font;
 public:
+	// Constructors
 	Comment(string,User*);
 	Comment(string, Page*);
 
 	// Functions
 	void Display_Comment(sf::RenderWindow&, sf::Vector2f&, sf::Vector2f&, sf::Vector2f&, sf::Vector2f&, float);
+
+	// Destructor
+	~Comment();
 };
 
 #endif

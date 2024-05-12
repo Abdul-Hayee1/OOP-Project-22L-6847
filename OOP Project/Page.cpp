@@ -1,5 +1,6 @@
 #include "Page.h"
 
+// Constructors
 Page::Page()
 {
 	Title = "";
@@ -83,3 +84,11 @@ void Page::DisplayTimeline(sf::RenderWindow& window, const sf::Event& event, boo
 }
 
 // Destructors
+Page::~Page()
+{
+    for (int i = 0; i < PostCount; i++) 
+    {
+        delete timeline[i];
+    }
+    delete[] timeline;
+}

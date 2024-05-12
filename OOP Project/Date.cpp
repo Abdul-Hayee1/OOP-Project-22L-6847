@@ -1,6 +1,6 @@
 #include "Date.h"
 
-// Constructor
+// Constructors
 Date::Date() 
 {
 	Day = 0;
@@ -17,6 +17,24 @@ Date::Date(const Date& obj)
 	Year = obj.Year;
 }
 
+
+// Getters
+int Date::getDay()
+{
+	return Day;
+}
+
+int Date::getMonth()
+{
+	return Month;
+}
+
+int Date::getYear()
+{
+	return Year;
+}
+
+// Operator Overloading
 Date& Date::operator=(const Date& obj)
 {
 	Day = obj.Day;
@@ -26,11 +44,11 @@ Date& Date::operator=(const Date& obj)
 	return *this;
 }
 
-bool Date::operator==(const Date* other) const 
+bool Date::operator==(const Date& other) const 
 {
-	return (this->Day == other->Day &&
-		this->Month == other->Month &&
-		this->Year == other->Year);
+	return (this->Day == other.Day &&
+		this->Month == other.Month &&
+		this->Year == other.Year);
 }
 
 void Date::PrintDate(sf::RenderWindow& window)

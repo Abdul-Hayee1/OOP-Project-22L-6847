@@ -6,6 +6,7 @@ SocialNetworkApp::SocialNetworkApp()
 	users = nullptr;
 	posts = nullptr;
 	pages = nullptr;
+	CurrentDate = nullptr;
 	MaxUsers = 0;
 	MaxPages = 0;
 	MaxPosts = 0;
@@ -203,7 +204,20 @@ void SocialNetworkApp::Read_CommentData_FromFile()
 	}
 }
 
+
 // Main Functions
+void SocialNetworkApp::Display_CurrentSystemDate(sf::RenderWindow& window)
+{
+	stringstream ss;
+	ss << "Current Date: " << CurrentDate->getDay() << "-" << CurrentDate->getMonth() << "-" << CurrentDate->getYear();
+
+	sf::Text date_text(ss.str(), font1, 26);
+	date_text.setFillColor(sf::Color::Black);
+	date_text.setPosition(970.f, 100.f);
+
+	window.draw(date_text);
+}
+
 User* SocialNetworkApp::FindUserByID(const string& userId, User** All_Users, int MaxUsers)
 {
 	for (int i = 0; i < MaxUsers; i++)
@@ -432,7 +446,7 @@ void SocialNetworkApp::Run()
 		users[i]->SetFriends_and_Pages(users, pages, MaxUsers, MaxPages);
 	}
 	
-	CurrentDate = new Date(14, 11, 2017);
+	CurrentDate = new Date(15, 11, 2017);
 
 	// Setting User's Home
 	for (int i = 0; i < MaxUsers; i++)
@@ -551,6 +565,15 @@ void SocialNetworkApp::Run()
 	post_bg_sprite.setPosition(250.f, 100.f);
 	post_bg_sprite.setScale(1.f, 0.9f);
 
+	// Home Page
+	fb_home.loadFromFile("images/fb_home_icon.png");
+	fb_home_sprite.setTexture(fb_home);
+	fb_home_sprite.setScale(0.1f, 0.1f);
+	fb_home_sprite.setPosition(290.f, 25.f);
+	sf::Text fb_home_text("Home", font1, 26);
+	fb_home_text.setFillColor(sf::Color(101, 103, 107));
+	fb_home_text.setPosition(341.f, 37.f);
+
 	// Comment Section
 	sf::Text comment_desc_text;
 	font1.loadFromFile("images/Segoe UI Historic.ttf");
@@ -562,12 +585,16 @@ void SocialNetworkApp::Run()
 	defaultText_comment.setFillColor(sf::Color(101, 103, 107));
 	defaultText_comment.setPosition(420.f, 350.f);
 
-	add_commentBox.loadFromFile("images/add_comment_box.png");
+	add_commentBox.loadFromFile("images/add_comment_box.png");  // Choice == 4
 	add_commentBox_sprite.setTexture(add_commentBox);
 	add_commentBox_sprite.setScale(1.5f, 1.8f);
 	add_commentBox_sprite.setPosition(390.f, 320.f);
+	sf::Color originalColor2 = add_commentBox_sprite.getColor();
 	sf::Vector2f add_comm_profile_position(280.f, 330.f);
 	float scaleFactor_comm_profile = 0.22f;
+	sf::Text comment_posted_text("Comment Posted.", font1, 35);
+	comment_posted_text.setFillColor(sf::Color(101, 103, 107));
+	comment_posted_text.setPosition(550.f, 330.f);
 
 	sf::RectangleShape comment_box(sf::Vector2f(680.f, 62.f));  // To activate comment event
 	comment_box.setOutlineColor(sf::Color::Black);
@@ -621,6 +648,7 @@ void SocialNetworkApp::Run()
 	bool PageID_Entered = false;
 	bool ShowCommentSection = false;
 	bool Comment_Entered = false;
+	bool Comment_Entered1 = false;
 	bool MemoryTextEntered = false;
 	bool LikeButtonClicked = false;
 	bool UnlikeButtonClicked = false;
@@ -718,8 +746,32 @@ void SocialNetworkApp::Run()
 									}
 								}
 							}
-						}
 
+							if (event.type == sf::Event::MouseButtonPressed)
+							{
+								if (event.mouseButton.button == sf::Mouse::Left)
+								{
+									if (smallerRegion.contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y)))
+									{
+										ShowCommentSection = true;
+									}
+								}
+							}
+						}
+						else if (ShowCommentSection == true)
+						{
+							if (event.type == sf::Event::MouseButtonPressed)  // back button
+							{
+								if (event.mouseButton.button == sf::Mouse::Left)
+								{
+									if (back_button_sprite.getGlobalBounds().contains(sf::Vector2f(event.mouseButton.x, event.mouseButton.y)))
+									{
+										back_button_sprite.setColor(sf::Color::Transparent);
+										ShowCommentSection = false;
+									}
+								}
+							}
+						}
 					}
 					else if (Choice == 2)
 					{
@@ -922,11 +974,13 @@ void SocialNetworkApp::Run()
 										defaultText2.setFillColor(sf::Color::Black);
 										PostIdText.setFillColor(sf::Color::Black);
 										line3.setFillColor(sf::Color::Black);
+										add_commentBox_sprite.setColor(originalColor2);
 										ID_toViewPost = "";
 										comment_description = "";
 										comment_desc_text.setString(comment_description);
 										PostIdText.setString(ID_toViewPost);
 										comment_desc_text.setFillColor(sf::Color::Black);
+										Comment_Entered1 = false;
 									}
 								}
 							}
@@ -954,6 +1008,8 @@ void SocialNetworkApp::Run()
 								else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter && !comment_description.empty())
 								{
 									Comment_Entered = true;
+									Comment_Entered1 = true;
+									add_commentBox_sprite.setColor(sf::Color::Transparent);
 									comment_desc_text.setFillColor(sf::Color::Transparent);
 								}
 							}
@@ -1124,9 +1180,11 @@ void SocialNetworkApp::Run()
 								{
 									MemoryTextEntered = true;
 									MemoryEntered = true;
+									defaultMemoryText.setFillColor(sf::Color::Transparent);
+									MemoryText_text.setFillColor(sf::Color::Transparent);
 								}
 							}
-							else if (MemoryTextEntered == true)
+							if (MemoryEntered == true)
 							{
 								if (event.type == sf::Event::MouseButtonPressed)  // back button
 								{
@@ -1136,6 +1194,12 @@ void SocialNetworkApp::Run()
 										{
 											back_button_sprite.setColor(sf::Color::Transparent);
 											ChoiceEntered = false;
+											MemoryEntered = false;
+											MemoryTextEntered = false;
+											MemoryText = "";
+											MemoryText_text.setString(MemoryText);
+											defaultMemoryText.setFillColor(sf::Color::Black);
+											MemoryText_text.setFillColor(sf::Color::Black);
 										}
 									}
 								}
@@ -1373,8 +1437,16 @@ void SocialNetworkApp::Run()
 					{
 						if (users[Current_User_Index]->getHomePostsCount() != 0)
 						{
+							Display_CurrentSystemDate(window);
 							window.draw(post_bg_sprite);
+							window.draw(fb_home_sprite);
+							window.draw(fb_home_text);
 						}
+						users[Current_User_Index]->Display_Home(window, event, ShowCommentSection);
+					}
+					else if (ShowCommentSection == true)
+					{
+						window.draw(comment_bg_sprite);
 						users[Current_User_Index]->Display_Home(window, event, ShowCommentSection);
 					}
 				}
@@ -1437,7 +1509,7 @@ void SocialNetworkApp::Run()
 					window.draw(line3);
 					window.draw(PostIdText);
 
-					if (PostID_Entered == true && Comment_Entered == false)
+					if (PostID_Entered == true && Comment_Entered1 == false)
 					{
 						users[Current_User_Index]->Display_ProfilePic(window, add_comm_profile_position, scaleFactor_comm_profile);
 						window.draw(add_commentBox_sprite);
@@ -1457,6 +1529,10 @@ void SocialNetworkApp::Run()
 						}
 						Comment_Entered = false;
 					}
+					if (Comment_Entered1 == true)
+					{
+						window.draw(comment_posted_text);
+					}
 				}
 				else if (Choice == 5)
 				{
@@ -1468,6 +1544,7 @@ void SocialNetworkApp::Run()
 					if (PostID_Entered && ShowCommentSection == false)
 					{
 						window.draw(post_bg_sprite);
+						Display_CurrentSystemDate(window);
 
 						View_Post_By_ID(window, ID_toViewPost, ShowCommentSection);
 
@@ -1485,6 +1562,10 @@ void SocialNetworkApp::Run()
 					window.draw(defaultText2);
 					window.draw(line3);
 					window.draw(PostIdText);
+					if (PostID_Entered == false)
+					{
+						users[Current_User_Index]->DisplayTimeline_PostIDs(window);
+					}
 
 					if (PostID_Entered == true)
 					{
@@ -1512,6 +1593,7 @@ void SocialNetworkApp::Run()
 						if (users[Current_User_Index]->getPost_Count() != 0)
 						{
 							window.draw(post_bg_sprite);
+							Display_CurrentSystemDate(window);
 							users[Current_User_Index]->DisplayTimeline(window, event, ShowCommentSection);
 						}
 						else
@@ -1545,6 +1627,7 @@ void SocialNetworkApp::Run()
 								if (pages[i]->getPost_Count() != 0)
 								{
 									window.draw(post_bg_sprite);
+									Display_CurrentSystemDate(window);
 									View_Page_By_ID(window, event, ID_toViewPage, ShowCommentSection);
 								}
 								else
@@ -1574,21 +1657,32 @@ void SocialNetworkApp::Run()
 // Destructor
 SocialNetworkApp::~SocialNetworkApp()
 {
-	for (int i = 0; i < MaxUsers; i++)
+	if (users != nullptr)
 	{
-		delete users[i];
+		for (int i = 0; i < MaxUsers; i++)
+		{
+			delete users[i];
+		}
+		delete[] users;
 	}
-	delete[]users;
 
-	for (int i = 0; i < MaxPages; i++)
+	if (posts != nullptr)
 	{
-		delete pages[i];
+		for (int i = 0; i < MaxPosts; i++)
+		{
+			delete posts[i];
+		}
+		delete[] posts;
 	}
-	delete[]pages;
 
-	for (int i = 0; i < MaxPosts; i++)
+	if (pages != nullptr)
 	{
-		delete posts[i];
+		for (int i = 0; i < MaxPages; i++)
+		{
+			delete pages[i];
+		}
+		delete[] pages;
 	}
-	delete[]posts;
+
+	delete CurrentDate;
 }

@@ -63,6 +63,7 @@ public:
 	void Display_Friend(sf::RenderWindow&, User**, int, int, sf::Vector2f);
 	void Display_ProfilePic(sf::RenderWindow&, sf::Vector2f, float);
 	void SetTimeline(Post**,const int&);
+	void DisplayTimeline_PostIDs(sf::RenderWindow&);
 	void addMemory(string Text, Date*, string postID);
 	void SetHome(Date*);
 	void SetFriends_and_Pages(User**, Page**, const int&, const int&);

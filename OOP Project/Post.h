@@ -6,6 +6,7 @@
 #include "Date.h"
 #include "Activity.h"
 #include "Comments.h"
+//#include "Memory.h"
 #include<iostream>
 #include<string>
 #include<SFML/Graphics.hpp>
@@ -20,6 +21,7 @@ class Activity;
 class Comment;
 
 class Post {
+protected:
 	string PostID;
 	string description;
 	int no_of_likes;
@@ -46,6 +48,11 @@ public:
 	int getNo_Of_Likes();
 	string getLikedByID(int index);
 	Date* getPublishedDate();
+	string getDescription();
+	string* getUsersWhoLiked();
+	bool getUOwner();
+	bool getPOwner();
+	bool getActivity();
 
 	// Functions
 	void AddComment(string,User*);
