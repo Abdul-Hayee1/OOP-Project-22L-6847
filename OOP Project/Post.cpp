@@ -120,10 +120,7 @@ void Post::AddComment(string description, Page* page)
 
 void Post::Add_Like(string ID)
 {
-    for (int i = 0; i < no_of_likes; i++)
-    {
-
-    }
+   
     if (no_of_likes < 10)
     {
         UsersWhoLiked[no_of_likes++] = ID;

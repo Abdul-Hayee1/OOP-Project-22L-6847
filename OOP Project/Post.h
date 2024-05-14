@@ -6,7 +6,6 @@
 #include "Date.h"
 #include "Activity.h"
 #include "Comments.h"
-//#include "Memory.h"
 #include<iostream>
 #include<string>
 #include<SFML/Graphics.hpp>

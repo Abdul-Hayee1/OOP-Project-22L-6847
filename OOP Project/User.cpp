@@ -296,14 +296,11 @@ void User::DisplayTimeline(sf::RenderWindow& window, const sf::Event& event, boo
 
 void User::addMemory(string Text, Date* MemoryDate, string postID)
 {
-    bool found = false;
     for (int i = 0; i < PostCount; i++)
     {
         if (timeline[i]->getPostID() == postID)
         {
             memories[MemoryCount++] = new Memory(Text, MemoryDate, timeline[i]);
-
-            found = true;
             break;
         }
     }

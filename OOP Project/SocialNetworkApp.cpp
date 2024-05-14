@@ -49,7 +49,7 @@ void SocialNetworkApp::Read_UserData_FromFile()
 			likedPgsID[likedPgsCount++] = pgID;
 		}
 
-		UserFile.ignore();
+		UserFile.ignore();	
 		string image_path;
 		getline(UserFile, image_path);
 
